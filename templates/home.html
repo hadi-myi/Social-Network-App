@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
+    <style>
+        li {
+            border: 1px solid #ccc; /* Outline style */
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            width: 500px; /* Set the width */
+            margin: 0 auto; /* Center horizontally */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+        }
+        ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0;
+            margin: 0;
+        }
+        .date-time {
+            color: #666; 
+        }
+        .post-details {
+            margin-bottom: 8px; /* Adjust the value to add spacing between elements */
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'header.html' %}
+    <main>
+        <section id="posts" class="mt-10">
+            <div class="container text-center">
+                <h2>Posts</h2>
+                {% if posts %}
+                    <ul>
+                        {% for post in posts %}
+                            <li>
+                                <div class="post-details">
+                                    <strong>{{ post[1] }}</strong>
+                                    <small class="date-time">{{ post[3] }}</small>
+                                </div>
+                                <p>{{ post[2] }}</p>
+                                
+                            </li>
+                            <br><br>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <div class="flex flex-col gap-7 items-center" style="padding-top: 3em;">
+                        <img src="/static/imgs/file.svg" width="100" alt="File">
+                        <p>No posts available.</p>
+                        <a class="cta" href="/makepost">
+                            Make A Post
+                            <svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 349.03 349.031" viewBox="0 0 349.03 349.031"><path d="M349.03 141.226v66.579a9.078 9.078 0 0 1-9.079 9.079H216.884v123.067a9.077 9.077 0 0 1-9.079 9.079h-66.579c-5.009 0-9.079-4.061-9.079-9.079V216.884H9.079A9.08 9.08 0 0 1 0 207.805v-66.579a9.079 9.079 0 0 1 9.079-9.079h123.068V9.079c0-5.018 4.069-9.079 9.079-9.079h66.579a9.078 9.078 0 0 1 9.079 9.079v123.068h123.067a9.077 9.077 0 0 1 9.079 9.079z"/></svg>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+    {% include 'footer.html' %}
+</body>
+
+</html>

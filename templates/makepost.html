@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Make Post</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='makepost.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
+    </head>
+    <body>
+        {% include 'header.html' %}
+        <main>
+            <section id="make-post">
+                <div class="container">
+                    <form action="/post" method="POST">
+                        <label for="post" class="heading">Make a post:</label>
+                        <textarea type="text" id="post" name="post" placeholder="Write your thoughts away..."></textarea>
+                        <button type="submit" class="cta text-xl">Post</button>
+                        <input type="hidden" name="username" value="{{ session['username'] }}">
+                    </form>
+                </div>
+            </section>
+        </main>
+        {% include 'footer.html' %}
+    </body>
+</html>
