@@ -26,9 +26,9 @@ Files
 
 How to Run
 
-    Install Flask:
+    Install Flask: pip install flask
 
-pip install flask
+
 
 Start the server:
 
